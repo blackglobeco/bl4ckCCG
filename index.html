@@ -554,11 +554,11 @@
         </div>
         <div class="tool-button card-generator glow-effect floating" style="animation-delay: 0.2s" onclick="showScreen('card-generator-screen')">
           <div class="tool-icon">🔄</div>
-          <div>Card Generator(Broken T_T)</div>
+          <div>Card Generator</div>
         </div>
         <div class="tool-button card-checker glow-effect floating" style="animation-delay: 0.4s" onclick="showScreen('card-checker-screen')">
           <div class="tool-icon">✓</div>
-          <div>Card Checker(Luhn)</div>
+          <div>Card Checker (Luhn)</div>
         </div>
         <div class="tool-button bin-generator glow-effect floating" style="animation-delay: 0.6s" onclick="showScreen('bin-generator-screen')">
           <div class="tool-icon">⚙️</div>
@@ -603,10 +603,6 @@
         
         <div class="date-inputs">
           <div>
-            <label>Day (DD):</label>
-            <input type="number" id="gen-dd" placeholder="Leave blank to randomize" min="1" max="31">
-          </div>
-          <div>
             <label>Month (MM):</label>
             <input type="number" id="gen-mm" placeholder="Leave blank to randomize" min="1" max="12">
           </div>
@@ -647,10 +643,6 @@
         </div>
         
         <div class="date-inputs">
-          <div>
-            <label>Day (DD):</label>
-            <input type="number" id="multi-gen-dd" placeholder="Leave blank to randomize" min="1" max="31">
-          </div>
           <div>
             <label>Month (MM):</label>
             <input type="number" id="multi-gen-mm" placeholder="Leave blank to randomize" min="1" max="12">
@@ -966,7 +958,7 @@
       document.getElementById('generator-results').classList.add('hidden');
       document.getElementById('generated-cards').value = '';
       document.getElementById('gen-bin').value = '';
-      document.getElementById('gen-dd').value = '';
+      // Removed gen-dd
       document.getElementById('gen-mm').value = '';
       document.getElementById('gen-yy').value = '';
       document.getElementById('gen-cvv').value = '';
@@ -975,7 +967,7 @@
     
     function generateCards() {
       const bin = document.getElementById('gen-bin').value.replace(/\D/g, '');
-      const dd = document.getElementById('gen-dd').value;
+      // const dd = document.getElementById('gen-dd').value; // Removed from here
       const mm = document.getElementById('gen-mm').value;
       const yy = document.getElementById('gen-yy').value;
       const cvv = document.getElementById('gen-cvv').value;
@@ -1001,21 +993,31 @@
       setTimeout(() => {
         const cards = [];
         const currentYear = new Date().getFullYear();
-        const currentYearShort = parseInt(currentYear.toString().slice(-2));
         
         for (let i = 0; i < quantity; i++) {
           const cardNumber = generateCardNumber(bin);
           
-          const day = dd ? parseInt(dd) : Math.floor(Math.random() * 31) + 1;
+          // Month (MM)
           const month = mm ? parseInt(mm) : Math.floor(Math.random() * 12) + 1;
-          const year = yy ? parseInt(yy) : currentYearShort + Math.floor(Math.random() * 5) + 1;
+          const validMonth = String(Math.min(month, 12)).padStart(2, '0');
+
+          // Year (YYYY)
+          let year;
+          if (yy) {
+            year = parseInt(yy);
+            if (year < 100) { // Convert 2-digit year to 4-digit
+              year = (year < 70 ? 2000 + year : 1900 + year); // Assuming 20xx for YY >= 00 and YY < 70, 19xx for YY >= 70
+            }
+          } else {
+            year = currentYear + Math.floor(Math.random() * 5) + 1; // Random year between next year and next 5 years
+          }
+          const validYear = Math.max(year, currentYear); // Ensure year is not in the past
+
+          // CVV
           const validCvv = cvv ? parseInt(cvv) : Math.floor(Math.random() * 900) + 100;
           
-          const validDay = Math.min(day, 31);
-          const validMonth = Math.min(month, 12);
-          const validYear = Math.max(year, currentYearShort);
-          
-          cards.push(`${cardNumber}|${String(validDay).padStart(2, '0')}|${String(validMonth).padStart(2, '0')}|${validYear}|${String(validCvv).padStart(3, '0')}`);
+          // Output format: cardnum|month|year|cvv
+          cards.push(`${cardNumber}|${validMonth}|${validYear}|${String(validCvv).padStart(3, '0')}`);
         }
         
         const spinner = document.getElementById('generator-spinner');
@@ -1058,7 +1060,7 @@
       document.getElementById('multi-generator-results').classList.add('hidden');
       document.getElementById('multi-generated-cards').value = '';
       document.getElementById('multi-gen-bins').value = '';
-      document.getElementById('multi-gen-dd').value = '';
+      // Removed multi-gen-dd
       document.getElementById('multi-gen-mm').value = '';
       document.getElementById('multi-gen-yy').value = '';
       document.getElementById('multi-gen-cvv').value = '';
@@ -1074,7 +1076,7 @@
     
     function generateMultipleBINCards() {
       const binsInput = document.getElementById('multi-gen-bins').value;
-      const dd = document.getElementById('multi-gen-dd').value;
+      // const dd = document.getElementById('multi-gen-dd').value; // Removed from here
       const mm = document.getElementById('multi-gen-mm').value;
       const yy = document.getElementById('multi-gen-yy').value;
       const cvv = document.getElementById('multi-gen-cvv').value;
@@ -1110,22 +1112,32 @@
       setTimeout(() => {
         const allCards = [];
         const currentYear = new Date().getFullYear();
-        const currentYearShort = parseInt(currentYear.toString().slice(-2));
         
         bins.forEach(bin => {
           for (let i = 0; i < quantity; i++) {
             const cardNumber = generateCardNumber(bin);
             
-            const day = dd ? parseInt(dd) : Math.floor(Math.random() * 31) + 1;
+            // Month (MM)
             const month = mm ? parseInt(mm) : Math.floor(Math.random() * 12) + 1;
-            const year = yy ? parseInt(yy) : currentYearShort + Math.floor(Math.random() * 5) + 1;
+            const validMonth = String(Math.min(month, 12)).padStart(2, '0');
+
+            // Year (YYYY)
+            let year;
+            if (yy) {
+              year = parseInt(yy);
+              if (year < 100) { // Convert 2-digit year to 4-digit
+                year = (year < 70 ? 2000 + year : 1900 + year); // Assuming 20xx for YY >= 00 and YY < 70, 19xx for YY >= 70
+              }
+            } else {
+              year = currentYear + Math.floor(Math.random() * 5) + 1; // Random year between next year and next 5 years
+            }
+            const validYear = Math.max(year, currentYear); // Ensure year is not in the past
+
+            // CVV
             const validCvv = cvv ? parseInt(cvv) : Math.floor(Math.random() * 900) + 100;
             
-            const validDay = Math.min(day, 31);
-            const validMonth = Math.min(month, 12);
-            const validYear = Math.max(year, currentYearShort);
-            
-            allCards.push(`${cardNumber}|${String(validDay).padStart(2, '0')}|${String(validMonth).padStart(2, '0')}|${validYear}|${String(validCvv).padStart(3, '0')}`);
+            // Output format: cardnum|month|year|cvv
+            allCards.push(`${cardNumber}|${validMonth}|${validYear}|${String(validCvv).padStart(3, '0')}`);
           }
         });
         
@@ -1175,15 +1187,21 @@
           const parts = card.split('|');
           cardNumber = parts[0].replace(/\D/g, '');
           
-          if (parts.length >= 3) {
-            if (parts[1].includes('/')) {
-              expiry = parts[1];
-            } else {
-              expiry = `${parts[1]}|${parts[2]}`;
-              cvv = parts[3];
-            }
-            if (!cvv && parts[2]) {
-              cvv = parts[2];
+          // Assuming format is cardnum|MM|YYYY|CVV
+          if (parts.length >= 4) { 
+            expiry = `${parts[1]}|${parts[2]}`; // MM|YYYY
+            cvv = parts[3];
+          } else if (parts.length >= 3) { // Fallback for older formats or partial inputs
+            // Try to infer MM|YY or MM/YY
+            const expiryPart = parts[1];
+            const cvvPart = parts[2];
+
+            if (expiryPart.includes('/') || expiryPart.includes('|')) {
+                expiry = expiryPart;
+                cvv = cvvPart;
+            } else { // Assume MM and YY are separate parts[1] and parts[2]
+                expiry = `${parts[1]}|${parts[2]}`;
+                cvv = parts[3]; // This might be undefined if only 3 parts
             }
           }
         } else {
@@ -1192,6 +1210,7 @@
             const cardNumbers = matches.filter(m => m.length >= 13 && m.length <= 19);
             if (cardNumbers.length > 0) {
               cardNumber = cardNumbers[0];
+              // Attempt to find MM|YYYY or MM|YY
               const expiryMatch = card.match(/(\d{1,2})[\/\|](\d{2,4})/);
               if (expiryMatch) {
                 expiry = expiryMatch[0].replace('/', '|');
