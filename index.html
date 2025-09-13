@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credit Card Tools</title>
+  <title>BlackAI Credit Card Generator</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #d946ef);
-      --secondary-gradient: linear-gradient(135deg, #0ea5e9, #06b6d4, #14b8a6);
+      --primary-gradient: linear-gradient(135deg, #ffffff, #ffffff, #ffffff);
+      --secondary-gradient: linear-gradient(135deg, #ffffff, #ffffff, #ffffff);
       --card-gradient: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-      --button-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
+      --button-gradient: linear-gradient(135deg, #ffffff, #ffffff);
       --transition-speed: 0.4s;
       --bin-gradient: linear-gradient(135deg, #f59e0b, #d97706);
       --generator-gradient: linear-gradient(135deg, #ec4899, #e11d48);
@@ -26,7 +26,7 @@
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      background: #000000;
       color: white;
       margin: 0;
       padding: 15px;
@@ -43,7 +43,7 @@
       margin-bottom: 30px;
       font-weight: 600;
       font-size: 2.5rem;
-      background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef, #ec4899, #10b981, #0ea5e9);
+      background: linear-gradient(90deg, #000000, #ffffff, #000000, #ffffff, #000000, #ffffff);
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
@@ -61,10 +61,7 @@
       font-weight: 500;
       margin-top: 0;
       margin-bottom: 15px;
-      background: var(--secondary-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #ffffff;
       font-size: 1.5rem;
       padding-left: 50px;
     }
@@ -76,13 +73,13 @@
     }
     
     .card {
-      background: var(--card-gradient);
+      background: #000000;
       border-radius: 16px;
       padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 2px solid #ffffff;
       position: relative;
       width: 100%;
       max-width: 100%;
@@ -109,14 +106,14 @@
     
     .back-arrow:hover {
       transform: translateX(-5px);
-      color: #a78bfa;
+      color: #ffffff;
       background: rgba(30, 41, 59, 0.8);
     }
     
     button {
-      background: var(--button-gradient);
+      background: #000000;
       color: white;
-      border: none;
+      border: 2px solid #ffffff;
       padding: 10px 16px;
       border-radius: 8px;
       cursor: pointer;
@@ -143,7 +140,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-top: 25px;
+      margin-top: 80px;
       width: 100%;
     }
     
@@ -183,19 +180,23 @@
     }
     
     .bin-checker {
-      background: var(--bin-gradient);
+      background: #000000;
+      border: 2px solid #ffffff;
     }
     
     .card-generator {
-      background: var(--generator-gradient);
+      background: #000000;
+      border: 2px solid #ffffff;
     }
     
     .card-checker {
-      background: var(--checker-gradient);
+      background: #000000;
+      border: 2px solid #ffffff;
     }
     
     .bin-generator {
-      background: var(--bin-generator-gradient);
+      background: #000000;
+      border: 2px solid #ffffff;
     }
     
     textarea {
@@ -215,8 +216,8 @@
     }
     
     textarea:focus {
-      border-color: #8b5cf6;
-      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+      border-color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
     }
     
     input, select {
@@ -233,8 +234,8 @@
     }
     
     input:focus, select:focus {
-      border-color: #8b5cf6;
-      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+      border-color: #ffffff;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
     }
     
     .date-inputs {
@@ -281,7 +282,7 @@
       margin-top: 0;
       margin-bottom: 8px;
       font-weight: 500;
-      color: #a78bfa;
+      color: #ffffff;
       font-size: 1.2rem;
     }
     
@@ -321,7 +322,7 @@
       left: -3px;
       right: -3px;
       bottom: -3px;
-      background: var(--primary-gradient);
+      background: #ffffff;
       border-radius: 14px;
       z-index: -1;
       filter: blur(14px);
@@ -330,7 +331,13 @@
     }
     
     .glow-effect:hover::after {
-      opacity: 0.7;
+      opacity: 1;
+    }
+    
+    .tool-button:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+      color: #000000;
     }
     
     @keyframes pulse {
@@ -417,7 +424,7 @@
       background: var(--secondary-gradient);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
+      color: #ffffff;
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
@@ -544,32 +551,29 @@
 </head>
 <body>
   <div class="container">
-    <h1>Credit Card Tools</h1>
+    <h1>BlackAI ⚛ Credit Card Generator</h1>
     
     <div id="main-screen">
       <div class="tools">
         <div class="tool-button bin-checker glow-effect floating" onclick="showScreen('bin-checker-screen')">
-          <div class="tool-icon">🔍</div>
+          <div class="tool-icon">⌕</div>
           <div>BIN Checker</div>
         </div>
         <div class="tool-button card-generator glow-effect floating" style="animation-delay: 0.2s" onclick="showScreen('card-generator-screen')">
-          <div class="tool-icon">🔄</div>
+          <div class="tool-icon">⟳</div>
           <div>Card Generator</div>
         </div>
         <div class="tool-button card-checker glow-effect floating" style="animation-delay: 0.4s" onclick="showScreen('card-checker-screen')">
-          <div class="tool-icon">✓</div>
+          <div class="tool-icon">☑</div>
           <div>Card Checker (Luhn)</div>
         </div>
         <div class="tool-button bin-generator glow-effect floating" style="animation-delay: 0.6s" onclick="showScreen('bin-generator-screen')">
-          <div class="tool-icon">⚙️</div>
+          <div class="tool-icon">⛯</div>
           <div>BIN Generator</div>
         </div>
       </div>
       
-      <div class="card" style="margin-top: 25px; text-align: center;">
-        <div style="margin-bottom: 8px; background: var(--primary-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 500;">Made by Walter</div>
-        <p style="font-size: 0.9rem;">Join Discord: <a href="https://discord.gg/rgWcEw5G8a" style="color: #a78bfa; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">discord.gg/rgWcEw5G8a</a></p>
-      </div>
+      
     </div>
     
     <div id="bin-checker-screen" class="hidden">
@@ -581,10 +585,10 @@
         <textarea id="bin-input" placeholder="Enter BIN numbers (separated by space, comma, or new lines)"></textarea>
         
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <button class="pulse" style="background: var(--bin-gradient);" onclick="checkBIN()">Check BIN</button>
-          <button style="background: linear-gradient(135deg, #4338ca, #3b82f6);" onclick="document.getElementById('bin-file-import').click()">Import from File</button>
+          <button class="pulse" style="background: #000000;" onclick="checkBIN()">Check BIN</button>
+          <button style="background: #000000;" onclick="document.getElementById('bin-file-import').click()">Import from File</button>
           <input type="file" id="bin-file-import" style="display: none" onchange="importBINFile(this)" accept=".txt,.csv"/>
-          <button style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="clearBINResults()">Clear</button>
+          <button style="background: #000000;" onclick="clearBINResults()">Clear</button>
         </div>
         
         <div id="bin-results"></div>
@@ -622,13 +626,13 @@
         </div>
         
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <button class="pulse" style="background: var(--generator-gradient);" onclick="generateCards()">Generate Cards</button>
-          <button style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="clearGeneratorResults()">Clear</button>
+          <button class="pulse" style="background: #000000;" onclick="generateCards()">Generate Cards</button>
+          <button style="background: #000000;" onclick="clearGeneratorResults()">Clear</button>
         </div>
         
         <div id="generator-results" class="hidden" style="margin-top: 15px;">
           <h3>Generated Cards</h3>
-          <button class="pulse" style="background: linear-gradient(135deg, #4c1d95, #6d28d9);" onclick="copyGeneratedCards()">Copy All</button>
+          <button class="pulse" style="background: #000000;" onclick="copyGeneratedCards()">Copy All</button>
           <textarea id="generated-cards" readonly style="margin-top: 8px;"></textarea>
         </div>
       </div>
@@ -663,13 +667,13 @@
         </div>
         
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <button class="pulse" style="background: var(--generator-gradient);" onclick="generateMultipleBINCards()">Generate Cards</button>
-          <button style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="clearMultiGeneratorResults()">Clear</button>
+          <button class="pulse" style="background: #000000;" onclick="generateMultipleBINCards()">Generate Cards</button>
+          <button style="background: #000000;" onclick="clearMultiGeneratorResults()">Clear</button>
         </div>
         
         <div id="multi-generator-results" class="hidden" style="margin-top: 15px;">
           <h3>Generated Cards</h3>
-          <button class="pulse" style="background: linear-gradient(135deg, #4c1d95, #6d28d9);" onclick="copyMultiGeneratedCards()">Copy All</button>
+          <button class="pulse" style="background: #000000;" onclick="copyMultiGeneratedCards()">Copy All</button>
           <textarea id="multi-generated-cards" readonly style="margin-top: 8px;"></textarea>
         </div>
       </div>
@@ -684,10 +688,10 @@
         <textarea id="cards-input" placeholder="One card per line, format: XXXXXXXXXXXXXXXX|MM|YY|CVV"></textarea>
         
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <button class="pulse" style="background: var(--checker-gradient);" onclick="checkCards()">Check Cards</button>
-          <button style="background: linear-gradient(135deg, #4338ca, #3b82f6);" onclick="document.getElementById('cards-file-import').click()">Import from File</button>
+          <button class="pulse" style="background: #000000;" onclick="checkCards()">Check Cards</button>
+          <button style="background: #000000;" onclick="document.getElementById('cards-file-import').click()">Import from File</button>
           <input type="file" id="cards-file-import" style="display: none" onchange="importCardsFile(this)" accept=".txt,.csv"/>
-          <button style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="clearCardResults()">Clear</button>
+          <button style="background: #000000;" onclick="clearCardResults()">Clear</button>
         </div>
         
         <div id="card-results">
@@ -718,14 +722,14 @@
         </div>
         
         <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-          <button class="pulse" style="background: var(--bin-generator-gradient);" onclick="generateBINs()">Generate BINs</button>
-          <button style="background: linear-gradient(135deg, #ef4444, #f87171);" onclick="clearBINGeneratorResults()">Clear</button>
+          <button class="pulse" style="background: #000000;" onclick="generateBINs()">Generate BINs</button>
+          <button style="background: #000000;" onclick="clearBINGeneratorResults()">Clear</button>
         </div>
         
         <div id="bin-generator-results" class="hidden" style="margin-top: 15px;">
           <h3>Generated BINs</h3>
-          <button class="pulse" style="background: linear-gradient(135deg, #4c1d95, #6d28d9);" onclick="copyGeneratedBINs()">Copy All</button>
-          <button class="pulse" style="background: linear-gradient(135deg, #2dd4bf, #14b8a6);" onclick="downloadGeneratedBINs()">Download Results</button>
+          <button class="pulse" style="background: #000000;" onclick="copyGeneratedBINs()">Copy All</button>
+          <button class="pulse" style="background: #000000;" onclick="downloadGeneratedBINs()">Download Results</button>
           <textarea id="generated-bins" readonly style="margin-top: 8px;"></textarea>
         </div>
       </div>
@@ -869,8 +873,8 @@
         
         results += `
           <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-            <button class="pulse" style="background: linear-gradient(135deg, #4c1d95, #6d28d9);" onclick="copyBINResults()">Copy All</button>
-            <button class="pulse" style="background: linear-gradient(135deg, #2dd4bf, #14b8a6);" onclick="downloadBINResults()">Download Results</button>
+            <button class="pulse" style="background: #000000;" onclick="copyBINResults()">Copy All</button>
+            <button class="pulse" style="background: #000000;" onclick="downloadBINResults()">Download Results</button>
           </div>
           <div style="margin-top: 15px; font-size: 0.8em; color: #718096; text-align: center;">
             Database: ${rows.length-1} BINs | Checked: ${bins.length} queries
@@ -1290,10 +1294,10 @@
           ${liveCards.length > 0 ? liveCards.join('') : '<p style="color: #718096;">No live cards found.</p>'}
           ${liveCards.length > 0 ? `
             <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
-              <button class="pulse" style="background: linear-gradient(135deg, #4c1d95, #6d28d9);" onclick="copyLiveCards()">Copy All</button>
-              <button class="pulse" style="background: linear-gradient(135deg, #2dd4bf, #14b8a6);" onclick="downloadLiveCards()">Download All</button>
-              <button class="pulse" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);" onclick="copyLiveCardsOnly()">Copy Cards Only</button>
-              <button class="pulse" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="downloadLiveCardsOnly()">Download Cards Only</button>
+              <button class="pulse" style="background: #000000;" onclick="copyLiveCards()">Copy All</button>
+              <button class="pulse" style="background: #000000;" onclick="downloadLiveCards()">Download All</button>
+              <button class="pulse" style="background: #000000;" onclick="copyLiveCardsOnly()">Copy Cards Only</button>
+              <button class="pulse" style="background: #000000;" onclick="downloadLiveCardsOnly()">Download Cards Only</button>
             </div>
           ` : ''}
         </div>
